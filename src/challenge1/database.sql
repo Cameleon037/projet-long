@@ -1,5 +1,5 @@
--- CREATE DATABASE test;
-USE test;
+CREATE DATABASE mogodb;
+USE mogodb;
 
 DROP TABLE IF EXISTS products;
 CREATE TABLE products (c1 VARCHAR(20), c2 VARCHAR(20));
@@ -11,5 +11,3 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (login VARCHAR(20), pass VARCHAR(20));
 INSERT INTO users VALUES ('user', 'user');
 INSERT INTO users VALUES ('root', 'root');
-
-SELECT * FROM users ORDER BY nom;
