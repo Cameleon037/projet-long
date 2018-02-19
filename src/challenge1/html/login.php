@@ -63,7 +63,7 @@
                                             <?php
                                                 if (isset($_POST['login']) and isset($_POST['pass'])) {
                                                     /* Connection à la base de données */
-                                                    $connection = mysqli_connect("localhost", "root", "root")
+                                                    $connection = mysqli_connect("localhost", "root", "FN3Uqm77Abt3")
                                                         or print("Could not connect to the database\n");
                                                     mysqli_select_db($connection, "mogodb") or print("Could not select database : " . mysqli_error($connection) . "\n");
 
