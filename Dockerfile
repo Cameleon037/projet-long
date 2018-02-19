@@ -12,9 +12,9 @@ RUN useradd -m user1 && useradd -m user2 && useradd -m user3 \
 
 ##### Copy the current directory contents into the container at /
 ADD ./src/start.sh /app/start.sh
-ADD ./src/challenge1/mogo.sql /app/mogo.sql
-ADD ./src/challenge1/html /var/www/html
-ADD ./src/challenge2/ageConvertor/* /home/user2/
+ADD ./src/tuto1/mogo.sql /app/mogo.sql
+ADD ./src/tuto1/html /var/www/html
+ADD ./src/tuto2/ageConvertor/* /home/user2/
 
 RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R user3:user3 /home/user3 && chmod -R 700 /home/user3 \
  && chown root:user2 /home/user2/ageconvertor && chown root:root /home/user2/passwd.txt && chmod 4450 /home/user2/ageconvertor
