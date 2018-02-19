@@ -79,7 +79,7 @@
                                                 /* Connection à la base de données */
                                                 $connection = mysqli_connect("localhost", "root", "root")
                                                     or print("Could not connect to the database\n");
-                                                mysqli_select_db($connection, "test") or print("Could not select database : " . mysqli_error($connection) . "\n");
+                                                mysqli_select_db($connection, "mogodb") or print("Could not select database : " . mysqli_error($connection) . "\n");
 
                                                 /* Requête SQL */
                                                 if (empty($_GET['filter']) && empty($_GET['order'])) {
@@ -122,7 +122,7 @@
 
                                         <br /><br />
                                         <div class="head_title text-center">
-                                            <a href="products.php?filter=oui">Trier par WiFi | </a>
+                                            <a href="products.php?filter=oui">Filtrer par WiFi | </a>
                                             <a href="products.php?order=prix">Trier par prix | </a>
                                             <a href="products.php">Afficher tout</a>
                                             <div class="separator"></div>

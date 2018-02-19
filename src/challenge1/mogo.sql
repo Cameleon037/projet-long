@@ -1,5 +1,5 @@
--- CREATE DATABASE test;
-USE test;
+CREATE DATABASE mogodb;
+USE mogodb;
 
 DROP TABLE IF EXISTS products;
 CREATE TABLE products (cameras VARCHAR(20), wifi VARCHAR(20), prix VARCHAR(20));
@@ -15,5 +15,3 @@ CREATE TABLE users (login VARCHAR(20), pass VARCHAR(20));
 INSERT INTO users VALUES ('Jean', 'jeanjeandu64');
 INSERT INTO users VALUES ('Admin', 'wazabisdu31');
 INSERT INTO users VALUES ('Test', 'test');
-
-SELECT * FROM users ORDER BY login;

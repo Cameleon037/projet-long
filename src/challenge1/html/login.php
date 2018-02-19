@@ -65,7 +65,7 @@
                                                     /* Connection à la base de données */
                                                     $connection = mysqli_connect("localhost", "root", "root")
                                                         or print("Could not connect to the database\n");
-                                                    mysqli_select_db($connection, "test") or print("Could not select database : " . mysqli_error($connection) . "\n");
+                                                    mysqli_select_db($connection, "mogodb") or print("Could not select database : " . mysqli_error($connection) . "\n");
 
                                                     /* Requête SQL simple */
                                                     $query = "SELECT login FROM users WHERE login=? AND pass=?;";
