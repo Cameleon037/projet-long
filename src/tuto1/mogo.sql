@@ -13,5 +13,4 @@ INSERT INTO products VALUES ('MoGoHD 32Go', 'non', '165.0');
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (login VARCHAR(20), pass VARCHAR(20));
 INSERT INTO users VALUES ('Jean', 'jeanjeandu64');
-INSERT INTO users VALUES ('Admin', 'FN3Uqm77Abt3');
 INSERT INTO users VALUES ('Test', 'test');
