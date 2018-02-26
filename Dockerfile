@@ -20,8 +20,6 @@ RUN useradd -m user1 && useradd -m user2 && useradd -m user3 \
 ADD ./src/tuto1/mogo.sql /app/mogo.sql
 ADD ./src/tuto1/html /var/www/html
 ADD ./src/tuto2/ageConvertor/* /home/user2/
-ADD ./src/start.sh /app/start.sh
-
 
 #### Configuration des droits des utilisateurs et des services nécessaires aux challenges
 RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R user3:user3 /home/user3 && chmod -R 700 /home/user3 \
@@ -31,6 +29,9 @@ RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R use
  && echo $TUTO_PASS > /home/user2/passwd.txt && service mysql start 2> /dev/null > /dev/null \
  && mysql -u root --password=$TUTO_PASS < /app/mogo.sql 2> /dev/null > /dev/null \
  && echo "USE mogodb; INSERT INTO users VALUES ('Admin', '$TUTO_PASS');" | mysql -u root --password=$TUTO_PASS 2> /dev/null > /dev/null
+
+#A déplacer
+ADD ./src/start.sh /app/start.sh
 
 ##### Exposition du port 80 pour l'extérieur
 EXPOSE 80

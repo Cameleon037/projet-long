@@ -1,11 +1,27 @@
 #!/bin/bash
 
-echo
-echo
+function change_chall {
+    clear
+    echo "Que souhaitez-vous faire à présent ?"
+    echo
+    echo "1) Exploitation web de type injection SQL"
+    echo "2) Exploitation système de type BufferOverflow"
+    echo "3) Ingénierie sociale"
+    echo "4) Quitter"
+}
+
+GREEN='\033[0;32m'
+BLUE='\033[1;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+export PATH=/app/bin:$PATH
+clear
+echo -e "${BLUE}"
 echo "+--------------------------------------------+"
 echo "| Bienvenue dans ce tutoriel d'exploitation  |"
 echo "+--------------------------------------------+"
-echo
+echo -e "${NC}"
 echo "Le but ici est d'obtenir les droits root sur cette image Docker basée sur Ubuntu"
 echo "Pour parvenir à cette fin, plusieurs exploitations sont possibles"
 echo
@@ -21,43 +37,50 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Exploitation web de type injection SQL")
-			echo
-            echo "Vous allez maintenant être authentifiés en tant que \"user1\""
+			clear
+            echo "Vous allez être authentifiés en tant que \"user1\""
+            echo "Veuillez patienter durant le lancement du serveur..."
+            apache2ctl start 2> /dev/null > /dev/null
+            service mysql start 2> /dev/null > /dev/null
             echo
             echo "Depuis un navigateur sur votre système hôte accédez au site hébergé par ce "
-            echo "Docker via l'url : \"localhost:4000\""
+            echo -e "Docker via l'url : \"${GREEN}localhost:4000${NC}\""
             echo
             echo "Ce site présente une vulnérabilité de type injection SQL, à vous de la trouver"
             echo "et de l'exploiter pour récupérer des informations sensibles"
             echo
-            apache2ctl start 2> /dev/null > /dev/null
-			service mysql start 2> /dev/null > /dev/null
-            cd /home/user1
-            su user1
-            break
+            echo -e "NB : Vous pouvez toujours changer de challenge une fois celui-ci terminé (ou pas)"
+            echo -e "avec le raccourci : ${GREEN}Ctrl+D${NC}"
+            echo
+            cd /home/user1 && su user1
+            change_chall
             ;;
         "Exploitation système de type BufferOverflow")
-            echo
+            clear
             echo "Vous allez maintenant être authentifiés en tant que \"user2\""
             echo
             echo "Essayez d'exploiter le binaire \"ageconvertor\" pour obtenir des accès à"
             echo "priori restreints sur le systèmes"
             echo
-            cd /home/user2
-            su user2
-            break
+            echo -e "NB : Vous pouvez toujours changer de challenge une fois celui-ci terminé (ou pas)"
+            echo -e "avec le raccourci : ${GREEN}Ctrl+D${NC}"
+            echo
+            cd /home/user2 && su user2
+            change_chall
             ;;
         "Ingénierie sociale")
-            echo
+            clear
             echo "Vous allez maintenant être authentifiés en tant que \"user3\""
             echo
-            cd /home/user3
-            su user3
-            break
+            echo -e "NB : Vous pouvez toujours changer de challenge une fois celui-ci terminé (ou pas)"
+            echo -e "avec le raccourci : ${GREEN}Ctrl+D${NC}"
+            echo
+            cd /home/user3 && su user3
+            change_chall
             ;;
         "Quitter")
             break
             ;;
-        *) echo invalid option;;
+        *) echo "Mauvaise saisie";;
     esac
 done
