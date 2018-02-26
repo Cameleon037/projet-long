@@ -30,7 +30,11 @@ RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R use
  && chown root:user2 /home/user2/ageconvertor && chown root:root /home/user2/passwd.txt && chmod 4450 /home/user2/ageconvertor \
  && echo $TUTO_PASS > /home/user2/passwd.txt && service mysql start 2> /dev/null > /dev/null \
  && mysql -u root --password=$TUTO_PASS < /app/mogo.sql 2> /dev/null > /dev/null \
- && echo "USE mogodb; INSERT INTO users VALUES ('Admin', '$TUTO_PASS');" | mysql -u root --password=$TUTO_PASS 2> /dev/null > /dev/null
+ && echo "USE mogodb; INSERT INTO users VALUES ('Admin', '$TUTO_PASS');" | mysql -u root --password=$TUTO_PASS 2> /dev/null > /dev/null \
+ \
+ && echo $TUTO_PASS > /home/user3/passwd.txt && zip -P stephberlier passwd.zip passwd.txt && cat photo.jpg passwd.zip > selfie.jpg \
+ && rm passwd.txt passwd.zip && alias open="xdg-open"
+
 
 ##### Exposition du port 80 pour l'extérieur
 EXPOSE 80
