@@ -11,11 +11,30 @@ Il convient d'installer *Docker* au préalable pour pouvoir compiler et exécute
 
 ### Commandes à lancer
 
-Une fois le dépôt clôné, il suffit simplement de se placer dedans puis de lancer ces deux commandes pour compiler puis exécuter l'image *Docker*.
+Vous pouvez ensuite choisir de simplement télécharger et lancer l'image *Docker* de ce tuto avec les commandes :
+
 ```
-sudo docker build -t TutoExploit .
-sudo docker run -ti -p 4000:80 TutoExploit
+sudo docker pull tetras037/tuto-exploit
+sudo docker run -ti -p 4000:80 tetras037/tuto-exploit
 ```
+
+
+Ou bien de compiler vous même une image *Docker* avec un nouveau mot de passe root arbitraire en suivant les instructions suivantes.
+
+Il vous faudra tout d'abord clôner ce dépôt git et se placer dedans :
+
+```
+git clone https://github.com/Cameleon037/projet-long && cd projet-long
+```
+
+Une fois le dépôt clôné, il suffit simplement de lancer ces deux commandes pour compiler puis exécuter l'image *Docker* :
+
+```
+sudo docker build -t tuto-exploit . --build-arg TUTO_PASS=$(cat src/pass.txt)
+sudo docker run -ti -p 4000:80 tuto-exploit
+```
+
+NB : Le mot de passe des tutos peut être changé dans le fichier *pass.txt*. Il faut aussi bien penser à rendre inaccessible le code source de cette image (notamment ce fichier pass.txt) aux challengers.
 
 ## Prise en main
 

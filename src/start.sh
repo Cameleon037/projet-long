@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "pass : $TUTO_PASS"
+echo
 echo
 echo "+--------------------------------------------+"
 echo "| Bienvenue dans ce tutoriel d'exploitation  |"
@@ -32,9 +32,6 @@ do
             echo
             apache2ctl start 2> /dev/null > /dev/null
 			service mysql start 2> /dev/null > /dev/null
-			mysql -u root --password=$TUTO_PASS < /app/mogo.sql 2> /dev/null > /dev/null
-			echo "USE mogodb; INSERT INTO users VALUES ('Admin', '$TUTO_PASS');" | mysql -u root --password=$TUTO_PASS 2> /dev/null > /dev/null
-			unset TUTO_PASS
             cd /home/user1
             su user1
             break
@@ -46,8 +43,6 @@ do
             echo "Essayez d'exploiter le binaire \"ageconvertor\" pour obtenir des accès à"
             echo "priori restreints sur le systèmes"
             echo
-            echo "$TUTO_PASS" > /home/user2/passwd.txt
-            unset TUTO_PASS
             cd /home/user2
             su user2
             break
@@ -56,7 +51,6 @@ do
             echo
             echo "Vous allez maintenant être authentifiés en tant que \"user3\""
             echo
-            unset TUTO_PASS
             cd /home/user3
             su user3
             break
