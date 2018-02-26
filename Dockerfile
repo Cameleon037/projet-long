@@ -1,7 +1,7 @@
 FROM ubuntu
 
 #### Première couche longue durant la compilation : mise à jour des paquets et installation des paquets nécessaires pour Apache
-RUN apt-get update && apt-get --assume-yes install apache2 libapache2-mod-php php-mysql gcc-multilib \
+RUN apt-get update && apt-get --assume-yes install apache2 libapache2-mod-php php-mysql gcc-multilib zip \
  && rm /var/www/html/index.html
 
 ##### Argument définissant le mot de passe ultime du tuto

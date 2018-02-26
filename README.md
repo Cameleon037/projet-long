@@ -1,4 +1,4 @@
-# Tutoriels d'exploitation web, système et ingénierie sociale
+# Tutoriels d'exploitation web, système et ingénierie sociale/stéganographie
 
 Ce dépôt contient toutes les sources permettant de compiler une image *Docker* à partir de laquelle différents tutoriels vous permettront d'exploiter des vulnérabilités classiques et répandues.
 
@@ -11,7 +11,9 @@ Il convient d'installer *Docker* au préalable pour pouvoir compiler et exécute
 
 ### Commandes à lancer
 
-Vous pouvez ensuite choisir de simplement télécharger et lancer l'image *Docker* de ce tuto avec les commandes :
+Deux possibilités s'offrent à vous :
+
+* Vous pouvez télécharger et lancer l'image *Docker* de ce tuto :
 
 ```
 sudo docker pull tetras037/tuto-exploit
@@ -19,22 +21,21 @@ sudo docker run -ti -p 4000:80 tetras037/tuto-exploit
 ```
 
 
-Ou bien de compiler vous même une image *Docker* avec un nouveau mot de passe root arbitraire en suivant les instructions suivantes.
+* Ou vous pouvez compiler vous même une image *Docker* avec un nouveau mot de passe *root* arbitraire.
+	
+	* Il vous faudra tout d'abord clôner ce dépôt git et vous placer dedans.
 
-Il vous faudra tout d'abord clôner ce dépôt git et se placer dedans :
+	```
+	git clone https://github.com/Cameleon037/projet-long && cd projet-long
+	```
+	* Puis vous devrez compiler puis exécuter l'image *Docker*.
 
-```
-git clone https://github.com/Cameleon037/projet-long && cd projet-long
-```
+	```
+	sudo docker build -t tuto-exploit . --build-arg TUTO_PASS=$(cat src/pass.txt)
+	sudo docker run -ti -p 4000:80 tuto-exploit
+	```
 
-Une fois le dépôt clôné, il suffit simplement de lancer ces deux commandes pour compiler puis exécuter l'image *Docker* :
-
-```
-sudo docker build -t tuto-exploit . --build-arg TUTO_PASS=$(cat src/pass.txt)
-sudo docker run -ti -p 4000:80 tuto-exploit
-```
-
-NB : Le mot de passe des tutos peut être changé dans le fichier *pass.txt*. Il faut aussi bien penser à rendre inaccessible le code source de cette image (notamment ce fichier pass.txt) aux challengers.
+NB : Le mot de passe *root* peut être modifié dans le fichier *pass.txt*. Il faut également bien penser à rendre inaccessible le code source de cette image (notamment le fichier *pass.txt*) aux challengers !
 
 ## Prise en main
 
