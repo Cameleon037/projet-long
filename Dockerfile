@@ -29,14 +29,13 @@ RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R use
  && replace mot_de_passe_mysql $TUTO_PASS < /var/www/html/login_without_pass.php > /var/www/html/login.php && rm /var/www/html/login_without_pass.php \
  && replace mot_de_passe_mysql $TUTO_PASS < /var/www/html/products_without_pass.php > /var/www/html/products.php && rm /var/www/html/products_without_pass.php \
  && replace mot_de_passe_mysql $TUTO_PASS < /app/mogo_without_pass.sql > /app/mogo.sql && rm /app/mogo_without_pass.sql \
- && mysql -u root --password=$TUTO_PASS < /app/mogo.sql 2> /dev/null > /dev/null \
+ && service mysql start 2> /dev/null > /dev/null && mysql -u root --password=$TUTO_PASS < /app/mogo.sql 2> /dev/null > /dev/null \
  \
  && chown root:user2 /home/user2/ageconvertor && chown root:root /home/user2/passwd.txt && chmod 4450 /home/user2/ageconvertor \
- && echo $TUTO_PASS > /home/user2/passwd.txt && service mysql start 2> /dev/null > /dev/null \
+ && echo $TUTO_PASS > /home/user2/passwd.txt \
  \
  && echo $TUTO_PASS > /home/user3/passwd.txt && zip -P stephberlier /home/user3/passwd.zip /home/user3/passwd.txt \
- && cat /home/user3/selfie.jpg /home/user3/passwd.zip > /home/user3/selfie.jpg \
- && rm /home/user3/passwd.txt /home/user3/passwd.zip && echo 'alias afficher="xdg-open"' >> /home/user3/.bashrc
+ && cat /home/user3/selfie.jpg /home/user3/passwd.zip > /home/user3/selfie.jpg && rm /home/user3/passwd.txt /home/user3/passwd.zip
 
 
 #A déplacer

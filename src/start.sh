@@ -16,6 +16,8 @@ function change_chall {
 }
 
 clear
+#Création du dossier partagé entre l'hôte et le Docker
+chmod -R 777 /home/user3/USB_KEY
 echo -e "${BLUE}"
 echo "+--------------------------------------------+"
 echo "| Bienvenue dans ce tutoriel d'exploitation  |"
