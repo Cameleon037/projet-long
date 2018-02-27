@@ -1,5 +1,10 @@
 #!/bin/bash
 
+GREEN='\033[0;32m'
+BLUE='\033[1;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
 function change_chall {
     clear
     echo "Que souhaitez-vous faire à présent ?"
@@ -10,12 +15,6 @@ function change_chall {
     echo "4) Quitter"
 }
 
-GREEN='\033[0;32m'
-BLUE='\033[1;34m'
-RED='\033[0;31m'
-NC='\033[0m'
-
-export PATH=/app/bin:$PATH
 clear
 echo -e "${BLUE}"
 echo "+--------------------------------------------+"
@@ -38,7 +37,7 @@ do
     case $opt in
         "Exploitation web de type injection SQL")
 			clear
-            echo "Vous allez être authentifiés en tant que \"user1\""
+            echo "Vous allez être authentifié en tant que \"user1\""
             echo "Veuillez patienter durant le lancement du serveur..."
             apache2ctl start 2> /dev/null > /dev/null
             service mysql start 2> /dev/null > /dev/null
@@ -57,10 +56,10 @@ do
             ;;
         "Exploitation système de type BufferOverflow")
             clear
-            echo "Vous allez maintenant être authentifiés en tant que \"user2\""
+            echo "Vous allez maintenant être authentifié en tant que \"user2\""
             echo
-            echo "Essayez d'exploiter le binaire \"ageconvertor\" pour obtenir des accès à"
-            echo "priori restreints sur le systèmes"
+            echo "Essayez d'exploiter le binaire \"ageconvertor\" pour obtenir des accès qui"
+            echo "vous sont à priori interdits sur le système"
             echo
             echo -e "NB : Vous pouvez toujours changer de challenge une fois celui-ci terminé (ou pas)"
             echo -e "avec le raccourci : ${GREEN}Ctrl+D${NC}"
@@ -70,7 +69,7 @@ do
             ;;
         "Ingénierie sociale")
             clear
-            echo "Vous allez maintenant être authentifiés en tant que \"user3\""
+            echo "Vous allez maintenant être authentifié en tant que \"user3\""
             echo
             echo -e "NB : Vous pouvez toujours changer de challenge une fois celui-ci terminé (ou pas)"
             echo -e "avec le raccourci : ${GREEN}Ctrl+D${NC}"
