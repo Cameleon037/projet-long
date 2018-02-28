@@ -14,17 +14,17 @@ RUN echo "mysql-server mysql-server/root_password password $TUTO_PASS" | debconf
  && apt-get --assume-yes install mysql-server
 
 #### Ajout des différents utilisateurs
-RUN useradd -m user1 && useradd -m user2 && useradd -m user3 \
- && echo "user1:user1" | chpasswd && echo "user2:user2" | chpasswd && echo "user3:user3" | chpasswd && echo "root:$TUTO_PASS" | chpasswd
+RUN useradd -m user1 && useradd -m user2 && useradd -m olivier \
+ && echo "user1:user1" | chpasswd && echo "user2:user2" | chpasswd && echo "olivier:olivier" | chpasswd && echo "root:$TUTO_PASS" | chpasswd
 
 ##### Copie des fichiers utiles aux challenges
 ADD ./src/tuto1/mogo_without_pass.sql /app/mogo_without_pass.sql
 ADD ./src/tuto1/html /var/www/html
 ADD ./src/tuto2/ageConvertor/* /home/user2/
-ADD ./src/tuto3/* /home/user3/
+ADD ./src/tuto3/* /home/olivier/
 
 #### Configuration des droits des utilisateurs et des services nécessaires aux challenges
-RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R user3:user3 /home/user3 && chmod -R 700 /home/user3 \
+RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R olivier:olivier /home/olivier && chmod -R 700 /home/olivier \
  && chgrp -R www-data /var/www/html && chmod -R 750 /var/www/html && chmod g+s /var/www/html/index.php \
  && replace mot_de_passe_mysql $TUTO_PASS < /var/www/html/login_without_pass.php > /var/www/html/login.php && rm /var/www/html/login_without_pass.php \
  && replace mot_de_passe_mysql $TUTO_PASS < /var/www/html/products_without_pass.php > /var/www/html/products.php && rm /var/www/html/products_without_pass.php \
@@ -34,12 +34,14 @@ RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R use
  && chown root:user2 /home/user2/ageconvertor && chown root:root /home/user2/passwd.txt && chmod 4450 /home/user2/ageconvertor \
  && echo $TUTO_PASS > /home/user2/passwd.txt \
  \
- && echo $TUTO_PASS > /home/user3/passwd.txt && zip -P stephberlier /home/user3/passwd.zip /home/user3/passwd.txt \
- && cat /home/user3/selfie.jpg /home/user3/passwd.zip > /home/user3/selfie.jpg && rm /home/user3/passwd.txt /home/user3/passwd.zip
+ && echo $TUTO_PASS > /home/olivier/passwd.txt && zip -P stephberlier /home/olivier/passwd.zip /home/olivier/passwd.txt \
+ && cat /home/olivier/selfie.jpg /home/olivier/passwd.zip > /home/olivier/selfie.jpg && rm /home/olivier/passwd.txt /home/olivier/passwd.zip
 
 
 #A déplacer
 ADD ./src/start.sh /app/start.sh
+ADD ./src/tuto-exploit.aa /app/tuto-exploit.aa
+ADD ./src/aurevoir.aa /app/aurevoir.aa
 
 ##### Exposition du port 80 pour l'extérieur
 EXPOSE 80
