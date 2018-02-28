@@ -7,95 +7,105 @@ NC='\033[0m'
 
 function echo_change_chall {
     clear
-    echo -e "${BLUE}Que souhaitez-vous faire à présent ?${NC}"
     echo
-    echo "1) Exploitation web de type injection SQL"
-    echo "2) Exploitation système de type BufferOverflow"
-    echo "3) Ingénierie sociale"
-    echo "4) Quitter"
+    echo -e "    ${BLUE}Que souhaitez-vous faire à présent ?${NC}"
+    echo
+    echo "          1) Exploitation web (injection SQL)"
+    echo "          2) Exploitation système (Buffer overflow)"
+    echo "          3) Ingénierie sociale et stéganographie"
+    echo "          4) Quitter"
 }
 
 function echo_NB {
-    echo -e "NB : Vous pouvez toujours changer de challenge une fois celui-ci terminé (ou pas)"
-    echo -e "avec le raccourci : ${GREEN}Ctrl+D${NC}"
+    echo -e "    NB : Vous pouvez changer de challenge à n'importe quel moment avec le raccourci : ${GREEN}Ctrl+D${NC}"
+    echo
 }
 
 clear
+
 #Création du dossier partagé entre l'hôte et le Docker
 chmod -R 777 /home/olivier/USB_KEY
 
+#Affichage du challenge
 echo -e -n "${RED}"
 cat /app/tuto-exploit.aa
 echo -e -n "${NC}"
 echo
 echo -e "${BLUE}"
-echo "+--------------------------------------------+"
-echo "| Bienvenue dans ce tutoriel d'exploitation  |"
-echo "+--------------------------------------------+"
+echo "                  +--------------------------------------------+"
+echo "                  | Bienvenue dans ce tutoriel d'exploitation  |"
+echo "                  +--------------------------------------------+"
 echo -e "${NC}"
-echo "Le but ici est d'obtenir les droits root sur cette image Docker basée sur Ubuntu"
-echo "Pour parvenir à cette fin, plusieurs exploitations sont possibles"
 echo
-echo "Nous vous laissons alors le choix entre 3 des plus grandes catégories"
-echo "d'exploitation connues sur les systèmes d'information :"
+echo "      Votre but est d'obtenir les droits root sur cette image Docker, basée sur Ubuntu."
+echo "      Pour cela, nous vous proposons plusieurs tutoriels d'exploitation."
+echo
+echo "      À vous de choisir parmi ces tutoriels dont les exploitations font partie"
+echo "      des plus connues sur les systèmes d'informations."
+echo
 echo
 echo
 
+options=("Exploitation web de type vulnérabilité SQL" "Exploitation système de type buffer overflow" \
+    "Social engineering & stéganographie" "Quitter")
 PS3="
-Faîtes votre choix : "
-options=("Exploitation web de type injection SQL" "Exploitation système de type BufferOverflow" "Ingénierie sociale" "Quitter")
-select opt in "${options[@]}"
+      Faites votre choix : "
+select option in "${options[@]}"
 do
-    case $opt in
-        "Exploitation web de type injection SQL")
+    case $option in
+        "Exploitation web de type vulnérabilité SQL")
 			clear
-            echo -e "${BLUE}Vous allez être authentifié en tant que \"user1\"${NC}"
-            echo -e "Veuillez patienter durant le lancement du serveur..."
+            echo
+            echo -e "    Vous allez être authentifié en tant que ${BLUE}user1${NC}"
+            echo "    Veuillez patienter durant le lancement du serveur..."
             apache2ctl start 2> /dev/null > /dev/null
             service mysql start 2> /dev/null > /dev/null
             echo
-            echo -e "Depuis un navigateur sur votre système hôte accédez au site hébergé par ce "
-            echo -e "Docker via l'url : ${GREEN}localhost:4000${NC}"
+            echo -e "    Depuis un navigateur sur votre système hôte, accédez au site hébergé par ce Docker via l'URL : ${GREEN}localhost:4000${NC}"
             echo
-            echo -e "Ce site présente une vulnérabilité de type injection SQL, à vous de la trouver"
-            echo -e "et de l'exploiter pour récupérer des informations sensibles"
+            echo "    Avec vos talents de caméraman, vous avez décidé d'acheter une caméra compacte d'une marque"
+            echo "    toute récente : MoGo. En vous rendant sur leur site Internet, vous commencez à douter de la"
+            echo "    fiabilité de leur sécurité et voulez tester le site avant d'acheter en ligne votre caméra."
+            echo "    Votre but : exploiter une vulnérabilité SQL pour récupérer des informations sensibles !"
             echo
             echo_NB
             echo
             cd /home/user1 && su user1
             echo_change_chall
             ;;
-        "Exploitation système de type BufferOverflow")
+        "Exploitation système de type buffer overflow")
             clear
-            echo -e "${BLUE}Vous allez maintenant être authentifié en tant que user2${NC}"
             echo
-            echo -e "Essayez d'exploiter le binaire ${GREEN}ageconvertor${NC} pour obtenir des accès qui"
-            echo -e "vous sont à priori interdits sur le système"
+            echo -e "    Vous allez être authentifié en tant que ${BLUE}user2${NC}"
             echo
-            echo -e "Le code source du binaire vous est aussi disponible, il est recommandé de"
-            echo -e "le lire dans un éditeur de texte (eg : ${GREEN}sublime text${NC}) sur le système"
-            echo -e "hôte pour faciliter la compréhension du code."
+            echo "    Pour vous amuser, vous venez de télécharger un petit programme rédigé en C qui vous permet"
+            echo "    de calculer votre âge en donnant votre date de naissance. Ce programme étant écrit par un"
+            echo "    développeur anonyme, vous doutez de la sécurité associée."
+            echo -e "    Votre but : exploiter une vulnérabilité de ${GREEN}ageconvertor${NC} pour obtenir un shell root !"
+            echo
+            echo -e "    Il est recommandé de lire le code source du binaire dans un éditeur de texte (ex: ${GREEN}Sublime Text${NC})"
+            echo "    sur votre système hôte afin de faciliter la compréhension du code."
             echo
             echo_NB
             echo
             cd /home/user2 && su user2
             echo_change_chall
             ;;
-        "Ingénierie sociale")
+        "Social engineering & stéganographie")
             clear
-            echo -e "${BLUE}Vous allez maintenant être authentifié en tant que Olivier"
             echo
-            echo -e "Le but ici est de se venger de ce fameux Olivier qui ne paye pas"
-            echo -e "le café au boulot. Il a malheuresement laissé sa session ouverte"
-            echo -e "et vous en profitez pour essayer de récupérer ses identifiants.${NC}"
+            echo -e "    Vous allez maintenant être authentifié en tant que ${BLUE}Olivier${NC}"
             echo
-            echo -e "Un répertoire ${GREEN}USB_KEY${NC} est présent et simule une clé USB que vous avez branchée"
-            echo -e "sur son système (le Docker). Ce dossier est en réalité un dossier partagé entre"
-            echo -e "le Docker et lê système hôte. Cela permet par exemple d'exfiltrer des images"
-            echo -e "pour les visualiser dans le ${GREEN}dossier personnel${NC} de votre machine hôte."
+            echo "    Votre collègue Olivier ne vous a payé le café ce matin. En faisant sa pause déjeuner, il a oublié"
+            echo "    de fermer sa session. Grave erreur ! Faites en sorte qu'il se souvienne de la leçon."
+            echo "    Votre but : servez-vous des informations à votre disposition pour obtenir des privilèges sur la session."
             echo
-            echo -e "Utilisez simplement la commande ${GREEN}cp [fichier à exfiltrer] USB_KEY${NC}"
-            echo -e "pour exfiltrer les informations nécessaires à votre analyse."
+            echo -e "    Vous avez branché une clé USB ${GREEN}USB_KEY${NC} dans laquelle vous pouvez copier des fichiers pour" 
+            echo "    les examiner sur votre ordinateur personnel. En réalité, c'est un dossier partagé entre l'image Docker"
+            echo "    et la machine hôte, ce qui nous permet de simuler une clé USB. Vous retrouverez ce dossier dans votre"
+            echo "    répertoire personnel sous le même nom."
+            echo
+            echo -e "    Utilisez simplement la commande ${GREEN}cp [fichier à exfiltrer] USB_KEY${NC}"
             echo
             echo_NB
             echo

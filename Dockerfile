@@ -15,7 +15,7 @@ RUN echo "mysql-server mysql-server/root_password password $TUTO_PASS" | debconf
 
 #### Ajout des différents utilisateurs
 RUN useradd -m user1 && useradd -m user2 && useradd -m olivier \
- && echo "user1:user1" | chpasswd && echo "user2:user2" | chpasswd && echo "olivier:olivier" | chpasswd && echo "root:$TUTO_PASS" | chpasswd
+ && echo "user1:user1" | chpasswd && echo "user2:user2" | chpasswd && echo "olivier:olivier" | chpasswd && echo "root:$TUTO_PASS" | chpasswd 
 
 ##### Copie des fichiers utiles aux challenges
 ADD ./src/tuto1/mogo_without_pass.sql /app/mogo_without_pass.sql

@@ -12,7 +12,7 @@ Votre but : servez-vous des informations à votre disposition pour obtenir des p
 
 Afin de rendre ce challenge plus pédagogique, vous avez le choix de le réaliser par vous-même (quelques indices sont à disposition au besoin) ou bien en suivant un guide pas à pas. Vous trouverez à la fin la solution détaillée.
 
-NB: vous avez branché une clé USB dans laquelle vous pouvez copier des fichiers pour les examiner sur votre ordinateur personnel. En réalité, c'est un dossier partagé entre l'image Docker et la machine hôte, ce qui nous permet de simuler une clé USB. Utilisez la commande suivante pour copier vos fichiers.
+NB: vous avez branché une clé USB dans laquelle vous pouvez copier des fichiers pour les examiner sur votre ordinateur personnel. En réalité, c'est un dossier partagé entre l'image Docker et la machine hôte, ce qui nous permet de simuler une clé USB. Utilisez la commande suivante pour copier vos fichiers dans la clé USB.
 ```
 cp fichier_à_copier USB_KEY
 ```
