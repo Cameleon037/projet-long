@@ -12,5 +12,4 @@ Pour vous amuser, vous venez de télécharger un petit programme rédigé en C q
 
 ### *Social engineering* & stéganographie
 
-Votre collègue Olivier ne vous a payé le café ce matin. En faisant sa pause déjeuner, il a oublié de fermer sa session. Grave erreur !
-La vengeance est un plat qui se mange froid... faites qu'il se souvienne de la leçon. Analysez les fichiers de l'espace de travail pour retrouver un mot de passe caché.
+Votre collègue Olivier ne vous a payé le café ce matin. En faisant sa pause déjeuner, il a oublié de fermer sa session. Grave erreur ! Faites en sorte qu'il se souvienne de la leçon. Analysez les fichiers de l'espace de travail pour retrouver un mot de passe caché.
