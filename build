@@ -1,0 +1,2 @@
+#!/bin/bash
+docker build -t tuto-exploit . --build-arg TUTO_PASS=$(cat src/pass.txt)

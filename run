@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -ti -v $HOME/USB_KEY:/home/user3/USB_KEY -p 4000:80 tuto-exploit

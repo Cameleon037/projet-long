@@ -17,7 +17,7 @@ Deux possibilités s'offrent à vous :
 
 ```
 sudo docker pull tetras037/tuto-exploit
-sudo docker run -ti -v $(pwd)/USB_KEY:/home/user3 -p 4000:80 tetras037/tuto-exploit
+sudo docker run -ti -v $HOME/USB_KEY:/home/user3 -p 4000:80 tetras037/tuto-exploit
 ```
 
 
@@ -32,7 +32,7 @@ sudo docker run -ti -v $(pwd)/USB_KEY:/home/user3 -p 4000:80 tetras037/tuto-expl
 
 	```
 	sudo docker build -t tuto-exploit . --build-arg TUTO_PASS=$(cat src/pass.txt)
-	sudo docker run -ti -v $(pwd)/USB_KEY:/home/user3 -p 4000:80 tuto-exploit
+	sudo docker run -ti -v $HOME/USB_KEY:/home/user3 -p 4000:80 tuto-exploit
 	```
 
 NB : Le mot de passe *root* peut être modifié dans le fichier *pass.txt*. Il faut également bien penser à rendre inaccessible le code source de cette image (notamment le fichier *pass.txt*) aux challengers !
