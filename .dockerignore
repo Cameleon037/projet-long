@@ -1,2 +1,4 @@
 *.md
-src/pass.txt
+./src/pass.txt
+./build
+./run
