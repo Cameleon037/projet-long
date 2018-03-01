@@ -8,7 +8,6 @@ RUN apt-get update && apt-get --assume-yes install apache2 libapache2-mod-php ph
 ARG TUTO_PASS
 
 #### Installation du server MySQL avec le bon mot de passe
-#ENV DEBIAN_FRONTEND noninteractive
 RUN echo "mysql-server mysql-server/root_password password $TUTO_PASS" | debconf-set-selections \
  && echo "mysql-server mysql-server/root_password_again password $TUTO_PASS" | debconf-set-selections \
  && apt-get --assume-yes install mysql-server
@@ -22,6 +21,9 @@ ADD ./src/tuto1/mogo_without_pass.sql /app/mogo_without_pass.sql
 ADD ./src/tuto1/html /var/www/html
 ADD ./src/tuto2/ageConvertor/* /home/user2/
 ADD ./src/tuto3/* /home/olivier/
+ADD ./src/start.sh /app/start.sh
+ADD ./src/tuto-exploit.aa /app/tuto-exploit.aa
+ADD ./src/aurevoir.aa /app/aurevoir.aa
 
 #### Configuration des droits des utilisateurs et des services nécessaires aux challenges
 RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R olivier:olivier /home/olivier && chmod -R 700 /home/olivier \
@@ -36,12 +38,6 @@ RUN chown -R user2:user2 /home/user2 && chmod -R 700 /home/user2 && chown -R oli
  \
  && echo $TUTO_PASS > /home/olivier/passwd.txt && zip -P stephberlier /home/olivier/passwd.zip /home/olivier/passwd.txt \
  && cat /home/olivier/selfie.jpg /home/olivier/passwd.zip > /home/olivier/selfie.jpg && rm /home/olivier/passwd.txt /home/olivier/passwd.zip
-
-
-#A déplacer
-ADD ./src/start.sh /app/start.sh
-ADD ./src/tuto-exploit.aa /app/tuto-exploit.aa
-ADD ./src/aurevoir.aa /app/aurevoir.aa
 
 ##### Exposition du port 80 pour l'extérieur
 EXPOSE 80
